@@ -1,0 +1,29 @@
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: auth-service
+    environment:
+      - SPRING_APPLICATION_NAME=games
+      - SERVER_PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/auth
+      - SPRING_DATASOURCE_USERNAME=fecd
+      - SPRING_DATASOURCE_PASSWORD=femm34psql
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8081:8080"
+    depends_on:
+      - pgdb
+    volumes:
+      - ./src:/app/src
+      - ./target:/app/target
+
+  pgdb:
+    image: postgres:16
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: fecd
+      POSTGRES_PASSWORD: femm34psql
+      POSTGRES_DB: auth
