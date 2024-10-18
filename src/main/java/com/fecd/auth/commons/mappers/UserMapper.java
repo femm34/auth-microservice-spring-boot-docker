@@ -1,11 +1,17 @@
 package com.fecd.auth.commons.mappers;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.fecd.auth.commons.dto.CreateUserDto;
+import com.fecd.auth.models.entities.User;
+import com.fecd.auth.utils.MyPasswordEncoder;
 
 public class UserMapper {
-
-//    public static User toUser(com.fecd.auth.models.entities.User user) {
-//        return new User(user.getUsername(), user.getPassword());
-//    }
+    public static User toUser(CreateUserDto createUserDto, MyPasswordEncoder myPasswordEncoder) {
+        return User.builder()
+                .email(createUserDto.getEmail())
+                .name(createUserDto.getName())
+                .password(myPasswordEncoder.encode(createUserDto.getPassword()))
+                .username(createUserDto.getUsername())
+                .roles(createUserDto.getRolesSet())
+                .build();
+    }
 }

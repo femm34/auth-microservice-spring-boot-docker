@@ -20,6 +20,6 @@ public class Roles {
 
     @Column(unique = true, nullable = false)
     @Enumerated(EnumType.STRING)
-    private RoleName name;
+    public RoleName name;
 
 }
