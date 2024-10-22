@@ -1,6 +1,7 @@
 package com.fecd.auth.services.impl;
 
 import com.fecd.auth.commons.dto.CreateUserDto;
+import com.fecd.auth.commons.dto.LoginDto;
 import com.fecd.auth.commons.dto.TokenResponseDto;
 import com.fecd.auth.commons.exceptions.AuthException;
 import com.fecd.auth.commons.mappers.UserMapper;
@@ -35,13 +36,13 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public TokenResponseDto login(String username, String password) {
+    public TokenResponseDto login(LoginDto loginDto) {
+//        User userFound = userDao.findUserByUsername(loginDto.getUsername()).orElseThrow(()-> new AuthException("User doesn't exists",HttpStatus.NOT_FOUND));
         return null;
     }
 
     @Override
     public TokenResponseDto register(CreateUserDto createUserDto) {
-        System.out.println("--------------------------------------");
         return Optional.of(createUserDto)
                 .map(userToCreate -> {
                     var user = UserMapper.toUser(userToCreate, myPasswordEncoder);

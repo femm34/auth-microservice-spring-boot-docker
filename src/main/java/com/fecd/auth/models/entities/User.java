@@ -1,6 +1,5 @@
 package com.fecd.auth.models.entities;
 
-import com.fecd.auth.commons.constants.RoleName;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,8 +30,5 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Roles> roles;
-//    @ElementCollection(targetClass = RoleName.class)
-//    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    private Set<RoleName> roles;
+
 }
